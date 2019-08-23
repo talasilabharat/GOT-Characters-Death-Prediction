@@ -1,0 +1,13 @@
+Some links:
+
+https://arxiv.org/pdf/1403.4303.pdf
+
+https://techxplore.com/news/2017-07-game-thrones-network-character-deaths.html
+
+https://blogs.cornell.edu/info2040/2016/09/16/using-networks-to-predict-deaths-on-game-of-thrones/
+
+http://cs-courses.mines.edu/csci403/spring2018/projects/9-create/examples/game_of_thrones.pdf
+
+https://www.maa.org/sites/default/files/pdf/Mathhorizons/NetworkofThrones%20%281%29.pdf
+
+http://blogs.teradata.com/international/whos-next-predicting-deaths-part-1/

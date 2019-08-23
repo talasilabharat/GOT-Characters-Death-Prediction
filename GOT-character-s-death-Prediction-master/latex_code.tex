@@ -1,0 +1,603 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,caption}
+\usepackage{algorithmic,algorithm}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{hyperref}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Prediction of Deaths in Game of Thrones using Network Analysis\\
+% {\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
+% should not be used}
+% \thanks{Identify applicable funding agency here. If none, delete this.}
+}
+
+\author{\IEEEauthorblockN{Pooja Consul}
+\IEEEauthorblockA{\textit{B.E.HONS(Computer Science)} \\
+\textit{BITS Pilani}\\
+Goa, India \\
+email address}
+\and
+\IEEEauthorblockN{Bharat Arora}
+\IEEEauthorblockA{\textit{B.E.HONS(Computer Science)} \\
+\textit{BITS Pilani}\\
+Goa, India \\
+email address}
+\and
+\IEEEauthorblockN{Kalyan Kumar Datta}
+\IEEEauthorblockA{\textit{B.E.HONS(Computer Science)} \\
+\textit{BITS Pilani}\\
+Goa, India \\
+email address}
+% \and
+% \IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
+% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+% \textit{name of organization (of Aff.)}\\
+% City, Country \\
+% email address}
+% \and
+% \IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
+% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+% \textit{name of organization (of Aff.)}\\
+% City, Country \\
+% email address}
+% \and
+% \IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
+% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+% \textit{name of organization (of Aff.)}\\
+% City, Country \\
+% email address}
+}
+
+\maketitle
+
+\begin{abstract}
+% This document is a model and instructions for \LaTeX.
+% This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes, 
+% or Math in Paper Title or Abstract.
+This paper discusses the methodologies incorporated and findings of the study project done to predict the occurrences of character-deaths using Network Analysis.Mysterious and uncertain deaths in the novel-series have been stupefying to the vast pool of readers and hence interested researchers to come up with various models of methods to predict the deaths.In this paper, an effort has been made to establish an algorithmic foundation for invoking pure Network Analysis resulting in successful inference towards near-accurate prediction.The scope and implementable-limitations of the general Centrality Measures in this case have been the core-basis of the mentioned algorithmic approach.   
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+Network Anlaysis, 
+\end{IEEEkeywords}
+
+\section{Introduction}
+% This document is a model and instructions for \LaTeX.
+% Please observe the conference page limits. 
+
+'Game of Thrones' is a novel-series written by renowned American Novelist George R.R.Martin , can be regarded as the most popular Novel series of the contemporary generation if not of all times.The vast popularity of the novel resulted in production of TV-Series by HBO which keeps on breaking its own record of viewer ships with airing of each episode.The novel deals with various royal families,diplomats and bureaucrats indulging in a spectra of activities and politics with boundless longing for power and fame.It is a fantastic blend of numerous major and minor characters instead of a handful of characters,which adds to its dimensions.
+
+Among various occurrence trends in the series , sudden,abrupt and mind-boggling deaths have been the most fascinating events. Readers and viewers started guessing and gauging the upcoming deaths and this led to a vast domain of research.
+
+Social Network Analysis on the network of characters of Game of Thrones depicts different natural and behavioral aspects of the actors thus providing a logical base of analysis.Understanding the relation and network bindings between the dead characters and the remaining ones provides us a likelihood of an existing actor's death. The Algorithmic approach lays a mathematical foundation of depicting proneness of a character's death in the upcoming series.
+
+\section{DATASET}
+% dataset description goes here
+
+The Dataset is from the analytics and predictive modelling platform Kaggle.The Dataset is consists of three .csv files.
+
+\begin{itemize}
+  \item \textbf{battles.csv :} It is a great collection of all the battles fought in the series that contains Chris Albon's "The War of the Five Kings" Dataset[1].
+  \item \textbf{character-deaths.csv :} It was created by Erin Pierce and Ben Kahle as a part of their Bayesian Survival Analysis[2].
+  \item \textbf{character-predictions.csv :} It is a comprehensive character dataset,it includes their house, culture, family relations etc by the team 'A Song of Ice and Data'[3].
+\end{itemize}
+\section{EXISTING APPROACHES}
+details of existing approaches go here
+
+\section{METHODOLOGY}
+Fig 1 gives a overview of the work-flow of the invoked methodology.The following modules are illustrated in detail.
+
+
+The approach can be illustrated as:
+\begin{itemize}
+    \item Creation of a social network of the characters as an weighted undirected graph.
+    \item Existence of an edge between two characters depicts a sense of similarity between them.
+    \item The magnitude of weight of an edge depicts the strength of similarity
+    \item Finding out the proneness of a character's death analyzing the links of the already dead characters.
+\end{itemize}
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{flowchart.png}
+    \caption{Overview of Methodology}
+    \label{fig:1}
+\end{figure}
+\subsection{Preprocessing of the Dataset}
+% The description of data pre-processing goes here
+A cumulative and more robust dataset is created extracting distinct fields from the above mentioned Dataset.This processed Dataset contains attributes of 1976 characters, irrespective of their popularity or prominence in the series.
+
+
+\subsection{Vector Space Model of the characters and its attributes}
+% The description of vector space model goes here
+Each character along with its attributes is represented as a k-dimensional vector in space.
+
+\begin{equation}
+    {\vec{p}} = a\hat{\alpha} + b\hat{\beta} + c\hat{\theta} + ...
+\end{equation}
+
+where k is the number of attributes of each character,where a,b,c are the scalar values of each attribute of a character,where $\hat{\alpha},\hat{\beta},\hat{\theta}$ are the unit vectors of each dimension.The magnitude of each unit vector is obtained by applying  ExtraTreeClassifier on the attribute-set.
+
+ExtraTreeClassifier is a tree based ensemble method that can be applied to supervised classification problem like this one. It focuses on randomizing both the attribute and split point for the tree node.The main reason of implementing is it's computational efficiency.It leads often to increased accuracy due to its smoothing and at the same time significantly reduces computational burdens linked to the determination of optimal cut-points in standard trees and in random forests. 
+It tackles variance problems (lack of robustness with respect to small changes in the training set) ,of individual DecisionTreeClassifier instances.Hence to increase prediction accuracy ExtraTreeClassifier is prefered over DecisionTreeClassifier. 
+
+% This effort has been made considering that the contribution of different ttributes towards a successful prediction would be different.
+
+
+\subsection{Cosine Similarities between Vectors}
+% The Description of cosine similarities goes here
+The cosine similarity between two vectors on the Vector Space is a measure that calculates the cosine of the angle between them. This metric is a measurement of orientation and not magnitude, it can be seen as a comparison between characters on a normalized space.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth,scale=0.5]{vector_space_model.png}
+    \caption{Vector Space Model of the Character pool}
+    \label{fig:2}
+\end{figure}
+
+The idea behind taking cosine similarity between the character-vectors is to have a similarity measure normalized across all the attributes, thus keeping a check on dominance of high magnitude-attributes over other attributes. 
+
+Cosine Similarity between two vectors $\vec{a}$ and $\vec{b}$ is defined as:
+
+\begin{equation}
+    \cos{\theta} = \frac{\vec{a} \cdot \vec{b}}{\|\vec{a}\|\|\vec{b}\|}
+\end{equation}
+
+Fig 2 depicts a 3-dimensional Vector Space Model(assuming number of attributes to be 3 for visualization) generated by the pool of Characters.
+
+\subsection{Edge-Weight Assignment to the Network }
+
+Each node represents a character in the social network, and existence of an edge between any two nodes depicts the attributed similarity between the characters.
+
+Cosine Similarity between any two characters is taken to be the weight of the undirected edge between the nodes in the network.Zero-valued(0) cosine similarity measure between two nodes doesn't signify any similarity between the nodes hence zero-weighted edges are dropped.
+
+% The IEEEtran class file is used to format your paper and style the text. All margins, 
+% column widths, line spaces, and text fonts are prescribed; please do not 
+% alter them. You may note peculiarities. For example, the head margin
+% measures proportionately more than is customary. This measurement 
+% and others are deliberate, using specifications that anticipate your paper 
+% as one part of the entire proceedings, and not as an independent document. 
+% Please do not revise any of the current designations.
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Ten Highest Weighted Edges in descending order of weights.}
+    \label{tab:table1}
+    \begin{tabular}{l|c|r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \textbf{Character A} & \textbf{Character B} & \textbf{Weight}\\
+    %   $\alpha$ & $\beta$ & $\gamma$ \\
+      \hline
+      Stafford Lannister & Daven Lannister & 0.895091519\\
+      Stafford Lannister & Tybolt Lannister & 0.891790053\\
+      Tybolt Lannister & Daven Lannister & 0.891138733\\
+      Damon Lannister (lord) & Gerold Lannister & 0.890782312\\
+      Gerold Lannister & Tybolt Lannister & 0.834014513\\
+      Stafford Lannister & Gerold Lannister & 0.833307821\\
+      Gerold Lannister & Daven Lannister & 0.832637399\\
+      Stafford Lannister & Damon Lannister (lord) & 0.83217145\\
+      Damon Lannister (lord) & Tybolt Lannister & 0.83217145\\
+      Damon Lannister (lord) & Daven Lannister & 0.831700245\\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+From TABLE 1 , it is evident that mutual links between only four characters ranked the highest in weights.Analyzing the dataset, all these actors are of same family,similar title-holder,of same gender,similar popularity,all present in first four books,participated in the battles together.Such degree of similarities justifies the weights the edges between them hold.
+
+\subsection{The Algorithm}
+% Algorithm description goes here
+In the Dataset, each death is associated with an occurrence year,the most recent year of death being 300.All the characters that died before 300, are fed into the algorithm as training set and the accuracy of the algorithm is tested on the deaths that occurred in 300.
+
+\begin{algorithm}
+    \caption{Calculate \textbf{DPS(Death Prone Score)}}
+    \begin{algorithmic}
+        \FOR{each non-dead node} assign DPS = 0 \ENDFOR
+        
+        % \FOR{each dead node d}
+        % % \STATE q = new Queue()
+        % % \STATE q.enqueue(dead node)
+        % % \WHILE{q not empty } 
+        % %     x = q.dequeue()
+        % %     DPS(x)=DPS(x)+
+        % % \ENDWHILE
+        %   \STATE find the set of immediate neighbours(say A)
+        %   \STATE DPS(a \epsilon A)= DPS(a) + \alpha * weight(d-a)
+        %   \FOR{each a \eplison A}
+        %     find the set of immediate neighbours (say B)
+       \STATE $distance = 0$
+       \STATE $visited[n] \leftarrow {false}$
+       \STATE $q = new Queue()$
+       \STATE $q.push(deadnode)$
+       \STATE $visited[n] \leftarrow {true}$
+       \STATE $current\_level\_node \leftarrow 1$
+       \STATE $next\_level\_node \leftarrow 0$
+       \WHILE{q not empty} 
+        \STATE $u \leftarrow q.front()$ 
+        \STATE $q.pop()$
+        \FOR{all (w,v) in adj[u]}
+            \IF{!visited[v]}
+                \STATE $q.push(v)$
+                \STATE $next\_level\_node++$
+                \STATE $DPS[v]=DPS[v]+\alpha/2^{distance}*Weight(u-v)$
+                \STATE $visited[v] \leftarrow {true}$  
+            \ENDIF
+        \ENDFOR
+        \IF{current\_level\_node == 0}
+            \STATE $distance++$
+            \STATE $current\_level\_node \leftarrow next\_level\_node$
+            \STATE $next\_level\_node \leftarrow 0$
+            \IF{distance == 5}
+                \STATE $break$
+            \ENDIF
+        \ENDIF
+        \ENDWHILE
+        \FOR{each non-dead node} $DPS[v]=DPS[v]/deg(v)$
+        \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+
+Algorithm 1 illustrates the calculation of the DPS for each non-dead node.The idea is to quantify the proneness of a non-dead death taking into accouny its direct or indirect links to the dead nodes in the network.It is a result of combined effect of the proximity to the dead nodes as well as the edge-weights.
+
+Each dead node is taken and the immediate neighbours are assigned to DPS equal to product of weight of the edge to the dead node and the damping factor,divided by the degree of the node.The degree comes into role to normalize the effect of numerous count of neighbours. The next level of nodes (whose distance from the dead node is 1 depicting there is one node between it and the dead node) is assigned a score less than the weight between the it and node connecting it to dead node as the edge does not directly connect the dead one with it rather a node comes in between.Here comes comes the Damping Factor, represented by $\alpha$ in Algorithm 1
+
+Damping Factor comes into role that as the closeness between the dead one and any other node decreases, signifying decreasing mode of similarity, the contribution of trail of weights connecting the dead node to the node should be decreasing as the number of intermediate nodes increase.The DPS is calculated by the equation.
+
+% \begin{equation}
+%     DSP=
+% \end{equation}
+
+$$DPS[v]= \alpha/2^{distance}*Weight(u,v)$$
+
+where u is the node that comes in between v and the dead node.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{example.png}
+    \caption{Sample of network to illustrate DPS}
+    \label{fig:3}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{corrected_DPS.png}
+    \caption{Calculation of DPS for fig3}
+    \label{fig:4}
+\end{figure}
+
+
+
+% \begin{figure}[htp]
+
+% \subfloat[Distribution of DPS of all nodes in the network]{%
+%   \includegraphics[clip,width=0.9\paperwidth]{Dps_dist.png}%
+% }
+
+% \subfloat[Distribution of DPS of test Data in the network]{%
+%   \includegraphics[clip,width=0.9\paperwidth]{DPS_300.png}%
+% }
+
+% \caption{main caption}
+
+% \end{figure}
+
+
+Fig 4 illustrates how DPS for the nodes are calculated by the algorithm for the sample graph Fig 4 .The black node represents a dead character and the white nodes represents alive characters.The DPS values for the figure is calculated taking $\alpha=0.5$
+
+
+The value of $\alpha$ is taken as $0.5$ in this methodology to give a median degree of dampness across distances,without being neither too steep nor too flat.  
+
+%  $DPS[b] = 0.42$
+%  $DPS[c] = 0.83$
+%  $DPS[d] = 0.68$
+%  $DPS[a] = 0.76 * 0.5/1 = 0.38$
+%  $DPS[h] = 0.56 * 0.5/1 = 0.28$
+%  $DPS[g] = 0.47 * 0.5/2 = 0.1175$
+%  $DPS[f] = 0.27 * 0.5/3 = 0.045$
+%  $DPS[e] = 0.35 * 0.5/4 = 0.043$
+
+
+\subsection{Result Analysis}
+% Result Analysis goes here
+DPS for all the nodes are calculated and the distribution is plotted(refer fig 5).
+
+In fig 5, it is evident that the distribution of the DPS of the network comes in the form of two distinct clusters.Lets name the cluster with comparatively higher DPS values as Cluster-A and the other one Cluster-B.
+
+The mean(m-DPS) of all DPS values is calculated to be $0.00999093160843$ and is the horizontal straight line in the graph.Hence,
+$$DPS\_val(Cluster-A) > m-DPS > DPS\_val(Cluster-B)$$
+\begin{figure}
+    \centering
+    %\frame{\includegraphics[width=0.90\paperwidth]{DPS_dist.jpg}}
+    \includegraphics[width=0.90\columnwidth,scale=0.30]{Dps_dist.png}
+    \caption{Distribution of DPS of all nodes in the network}
+    \label{fig:5}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \captionsetup{width=0.9\linewidth}
+    %\frame{\includegraphics[width=0.90\paperwidth]{DPS_300.jpg}}
+    \includegraphics[width=0.90\columnwidth,scale=0.45]{DPS_300.png}
+    \caption{Distribution of DPS of test Data in the network}
+    \label{fig:6}
+\end{figure}
+
+
+
+\begin{algorithm}
+    \caption{Classification of state of living}
+    \begin{algorithmic}
+        \FOR{each non-dead node:v}
+            \IF{$DPS[v]>m-DPS$}
+                \STATE $likely\_to\_die[v]={true}$
+            \ELSE
+                \STATE $likely\_to\_die[v]={false}$
+            \ENDIF
+        \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+
+Fig 6 depicts the DPS distribution of the test Data(i.e the characters that die in the year 300) and the horizontal straight line is the m-DPS from fig 5.Visualizing it can be noted that the cluster of nodes above m-DPS is more dense than the cluster with comparatively lower DPS values.
+
+Algorithm 2  illustrates classifies the state of living in comparison with the m-DPS.Hence, \textbf{The Procedure states all the characters that have higher DPS than m-DPS are likely to die.}
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Calculating accuracy of the procedure}
+    \label{tab:table2}
+    \begin{tabular}{l|c|r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      %\textbf{Character A} & \textbf{Character B} & \textbf{Weight}\\
+    %   $\alpha$ & $\beta$ & $\gamma$ \\
+      \hline
+      \# of nodes actually died in 300 & 86\\
+      \# of nodes predicted dead acc to algorithm & 66\\
+      Accuracy & 76.7\%\\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+For, calculating the accuracy of the procedure we take the ratio of number of characters predicted to die that died in 300 and the actual number of total characters that died in the year 300(the test Dataset)
+$$Accuracy = \frac{No.\ of\ characters\ predicted\ to\ die\ that\ died\ in\ 300}{The\  actual\ no.\ of\ total\ characters\ that\ died\ in\ 300}$$
+
+Table II calculates the accuracy of the procedure on the basis of the defined parameters.\textbf{The Accuracy of the procedure stands at $76.7\%$
+}
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Ten highest DPS valued non-dead characters likely to die}
+    \label{tab:table2}
+    \begin{tabular}{l|c|r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \textbf{Character} & \textbf{DPS}\\
+    %   $\alpha$ & $\beta$ & $\gamma$ \\
+      \hline
+      Daven Lannister & 0.0121146\\
+      Tygett Lannister & 0.0120856\\
+      Jamie Lannister & 0..0120663\\
+      Lyonel(knight) & 0.0120439\\
+      Rolly Duckfield & 0.0120366\\
+      Tybolt Lannister & 0.0120108\\
+      Red Lamb & 0.0119966\\
+      Edwyle Stark & 0.0118645\\
+      Donnor Stark & 0.0118634\\
+      Rodwell Stark & 0.0118628\\
+    \end{tabular}
+  \end{center}
+\end{table}
+Table III shows the Ten highest DPS valued characters that are predicted to die(with 76.7\% accuracy) in the course of the series.
+
+% \begin{figure}
+%     \centering
+%     \captionsetup{width=0.9\linewidth}
+%     %\frame{\includegraphics[width=0.90\paperwidth]{DPS_300.jpg}}
+%     \includegraphics[width=0.90\paperwidth,scale=0.45]{DPS_300.png}
+%     \caption{Distribution of DPS of test Data in the network}
+%     \label{fig:6}
+% \end{figure}
+
+\section*{ACKNOWLEDGEMENT}
+% Before you begin to format your paper, first write and save the content as a 
+% separate text file. Complete all content and organizational editing before 
+% formatting. Please note sections \ref{AA}--\ref{SCM} below for more information on 
+% proofreading, spelling and grammar.
+Acknowledgement goes here
+% Keep your text and graphic files separate until after the text has been 
+% formatted and styled. Do not number text heads---{\LaTeX} will do that 
+% for you.
+% Acknowledgement goes here
+% \subsection{Abbreviations and Acronyms}\label{AA}
+% Define abbreviations and acronyms the first time they are used in the text, 
+% even after they have been defined in the abstract. Abbreviations such as 
+% IEEE, SI, MKS, CGS, ac, dc, and rms do not have to be defined. Do not use 
+% abbreviations in the title or heads unless they are unavoidable.
+
+% \subsection{Units}
+% \begin{itemize}
+% \item Use either SI (MKS) or CGS as primary units. (SI units are encouraged.) English units may be used as secondary units (in parentheses). An exception would be the use of English units as identifiers in trade, such as ``3.5-inch disk drive''.
+% \item Avoid combining SI and CGS units, such as current in amperes and magnetic field in oersteds. This often leads to confusion because equations do not balance dimensionally. If you must use mixed units, clearly state the units for each quantity that you use in an equation.
+% \item Do not mix complete spellings and abbreviations of units: ``Wb/m\textsuperscript{2}'' or ``webers per square meter'', not ``webers/m\textsuperscript{2}''. Spell out units when they appear in text: ``. . . a few henries'', not ``. . . a few H''.
+% \item Use a zero before decimal points: ``0.25'', not ``.25''. Use ``cm\textsuperscript{3}'', not ``cc''.)
+% \end{itemize}
+
+% \subsection{Equations}
+% Number equations consecutively. To make your 
+% equations more compact, you may use the solidus (~/~), the exp function, or 
+% appropriate exponents. Italicize Roman symbols for quantities and variables, 
+% but not Greek symbols. Use a long dash rather than a hyphen for a minus 
+% sign. Punctuate equations with commas or periods when they are part of a 
+% sentence, as in:
+% \begin{equation}
+% a+b=\gamma\label{eq}
+% \end{equation}
+
+% Be sure that the 
+% symbols in your equation have been defined before or immediately following 
+% the equation. Use ``\eqref{eq}'', not ``Eq.~\eqref{eq}'' or ``equation \eqref{eq}'', except at 
+% the beginning of a sentence: ``Equation \eqref{eq} is . . .''
+
+% \subsection{\LaTeX-Specific Advice}
+
+% Please use ``soft'' (e.g., \verb|\eqref{Eq}|) cross references instead
+% of ``hard'' references (e.g., \verb|(1)|). That will make it possible
+% to combine sections, add equations, or change the order of figures or
+% citations without having to go through the file line by line.
+
+% Please don't use the \verb|{eqnarray}| equation environment. Use
+% \verb|{align}| or \verb|{IEEEeqnarray}| instead. The \verb|{eqnarray}|
+% environment leaves unsightly spaces around relation symbols.
+
+% Please note that the \verb|{subequations}| environment in {\LaTeX}
+% will increment the main equation counter even when there are no
+% equation numbers displayed. If you forget that, you might write an
+% article in which the equation numbers skip from (17) to (20), causing
+% the copy editors to wonder if you've discovered a new method of
+% counting.
+
+% {\BibTeX} does not work by magic. It doesn't get the bibliographic
+% data from thin air but from .bib files. If you use {\BibTeX} to produce a
+% bibliography you must send the .bib files. 
+
+% {\LaTeX} can't read your mind. If you assign the same label to a
+% subsubsection and a table, you might find that Table I has been cross
+% referenced as Table IV-B3. 
+
+% {\LaTeX} does not have precognitive abilities. If you put a
+% \verb|\label| command before the command that updates the counter it's
+% supposed to be using, the label will pick up the last counter to be
+% cross referenced instead. In particular, a \verb|\label| command
+% should not go before the caption of a figure or a table.
+
+% Do not use \verb|\nonumber| inside the \verb|{array}| environment. It
+% will not stop equation numbers inside \verb|{array}| (there won't be
+% any anyway) and it might stop a wanted equation number in the
+% surrounding equation.
+
+% \subsection{Some Common Mistakes}\label{SCM}
+% \begin{itemize}
+% \item The word ``data'' is plural, not singular.
+% \item The subscript for the permeability of vacuum $\mu_{0}$, and other common scientific constants, is zero with subscript formatting, not a lowercase letter ``o''.
+% \item In American English, commas, semicolons, periods, question and exclamation marks are located within quotation marks only when a complete thought or name is cited, such as a title or full quotation. When quotation marks are used, instead of a bold or italic typeface, to highlight a word or phrase, punctuation should appear outside of the quotation marks. A parenthetical phrase or statement at the end of a sentence is punctuated outside of the closing parenthesis (like this). (A parenthetical sentence is punctuated within the parentheses.)
+% \item A graph within a graph is an ``inset'', not an ``insert''. The word alternatively is preferred to the word ``alternately'' (unless you really mean something that alternates).
+% \item Do not use the word ``essentially'' to mean ``approximately'' or ``effectively''.
+% \item In your paper title, if the words ``that uses'' can accurately replace the word ``using'', capitalize the ``u''; if not, keep using lower-cased.
+% \item Be aware of the different meanings of the homophones ``affect'' and ``effect'', ``complement'' and ``compliment'', ``discreet'' and ``discrete'', ``principal'' and ``principle''.
+% \item Do not confuse ``imply'' and ``infer''.
+% \item The prefix ``non'' is not a word; it should be joined to the word it modifies, usually without a hyphen.
+% \item There is no period after the ``et'' in the Latin abbreviation ``et al.''.
+% \item The abbreviation ``i.e.'' means ``that is'', and the abbreviation ``e.g.'' means ``for example''.
+% \end{itemize}
+% An excellent style manual for science writers is \cite{b7}.
+
+% \subsection{Authors and Affiliations}
+% \textbf{The class file is designed for, but not limited to, six authors.} A 
+% minimum of one author is required for all conference articles. Author names 
+% should be listed starting from left to right and then moving down to the 
+% next line. This is the author sequence that will be used in future citations 
+% and by indexing services. Names should not be listed in columns nor group by 
+% affiliation. Please keep your affiliations as succinct as possible (for 
+% example, do not differentiate among departments of the same organization).
+
+% \subsection{Identify the Headings}
+% Headings, or heads, are organizational devices that guide the reader through 
+% your paper. There are two types: component heads and text heads.
+
+% Component heads identify the different components of your paper and are not 
+% topically subordinate to each other. Examples include Acknowledgments and 
+% References and, for these, the correct style to use is ``Heading 5''. Use 
+% ``figure caption'' for your Figure captions, and ``table head'' for your 
+% table title. Run-in heads, such as ``Abstract'', will require you to apply a 
+% style (in this case, italic) in addition to the style provided by the drop 
+% down menu to differentiate the head from the text.
+
+% Text heads organize the topics on a relational, hierarchical basis. For 
+% example, the paper title is the primary text head because all subsequent 
+% material relates and elaborates on this one topic. If there are two or more 
+% sub-topics, the next level head (uppercase Roman numerals) should be used 
+% and, conversely, if there are not at least two sub-topics, then no subheads 
+% should be introduced.
+
+% \subsection{Figures and Tables}
+% \paragraph{Positioning Figures and Tables} Place figures and tables at the top and 
+% bottom of columns. Avoid placing them in the middle of columns. Large 
+% figures and tables may span across both columns. Figure captions should be 
+% below the figures; table heads should appear above the tables. Insert 
+% figures and tables after they are cited in the text. Use the abbreviation 
+% ``Fig.~\ref{fig}'', even at the beginning of a sentence.
+
+% \begin{table}[htbp]
+% \caption{Table Type Styles}
+% \begin{center}
+% \begin{tabular}{|c|c|c|c|}
+% \hline
+% \textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
+% \cline{2-4} 
+% \textbf{Head} & \textbf{\textit{Table column subhead}}& \textbf{\textit{Subhead}}& \textbf{\textit{Subhead}} \\
+% \hline
+% copy& More table copy$^{\mathrm{a}}$& &  \\
+% \hline
+% \multicolumn{4}{l}{$^{\mathrm{a}}$Sample of a Table footnote.}
+% \end{tabular}
+% \label{tab1}
+% \end{center}
+% \end{table}
+
+% \begin{figure}[htbp]
+% %\centerline{\includegraphics{fig1.png}}
+% \caption{Example of a figure caption.}
+% \label{fig}
+% \end{figure}
+
+% Figure Labels: Use 8 point Times New Roman for Figure labels. Use words 
+% rather than symbols or abbreviations when writing Figure axis labels to 
+% avoid confusing the reader. As an example, write the quantity 
+% ``Magnetization'', or ``Magnetization, M'', not just ``M''. If including 
+% units in the label, present them within parentheses. Do not label axes only 
+% with units. In the example, write ``Magnetization (A/m)'' or ``Magnetization 
+% \{A[m(1)]\}'', not just ``A/m''. Do not label axes with a ratio of 
+% quantities and units. For example, write ``Temperature (K)'', not 
+% ``Temperature/K''.
+
+% \section*{Acknowledgment}
+
+% The preferred spelling of the word ``acknowledgment'' in America is without 
+% an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
+% G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
+% acknowledgments in the unnumbered footnote on the first page.
+
+%  \section*{References}
+
+% Please number citations consecutively within brackets \cite{b1}. The 
+% sentence punctuation follows the bracket \cite{b2}. Refer simply to the reference 
+% number, as in \cite{b3}---do not use ``Ref. \cite{b3}'' or ``reference \cite{b3}'' except at 
+% the beginning of a sentence: ``Reference \cite{b3} was the first $\ldots$''
+
+% Number footnotes separately in superscripts. Place the actual footnote at 
+% the bottom of the column in which it was cited. Do not put footnotes in the 
+% abstract or reference list. Use letters for table footnotes.
+
+% Unless there are six authors or more give all authors' names; do not use 
+% ``et al.''. Papers that have not been published, even if they have been 
+% submitted for publication, should be cited as ``unpublished'' \cite{b4}. Papers 
+% that have been accepted for publication should be cited as ``in press'' \cite{b5}. 
+% Capitalize only the first word in a paper title, except for proper nouns and 
+% element symbols.
+
+% For papers published in translation journals, please give the English 
+% citation first, followed by the original foreign-language citation \cite{b6}.
+
+\begin{thebibliography}{00}
+\bibitem{b1} \url{https://github.com/chrisalbon/war_of_the_five_kings_dataset}
+\bibitem{b2} \url{http://allendowney.blogspot.com/2015/03/bayesian-survival-analysis-for-game-of.html}
+\bibitem{b3} \url{http://awoiaf.westeros.org/index.php/Main_Page}
+\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
+\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
+\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
+\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+\end{thebibliography}
+
+\end{document}
